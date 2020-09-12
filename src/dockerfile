@@ -1,0 +1,14 @@
+# build stage
+FROM golang:alpine3.12 as build-env
+
+RUN apk add git
+RUN go get -u github.com/bwmarrin/discordgo
+
+ADD . /src
+
+RUN cd /src && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app
+
+# online
+FROM centurylink/ca-certs
+COPY --from=build-env /src/app /
+ENTRYPOINT ["/app"]
