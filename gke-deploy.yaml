@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: bot
-        image: asia.gcr.io/zhong-discord-bot/discord-bot:v0.3
+        image: asia.gcr.io/zhong-discord-bot/discord-bot:latest
         env:
           - name: BOT_TOKEN
             valueFrom:
